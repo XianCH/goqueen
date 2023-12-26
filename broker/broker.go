@@ -103,7 +103,7 @@ func BytesToMsg(reader io.Reader) Msg {
 func MsgToBytes(msg Msg) []byte {
 	msg.TopicLen = int64(len([]byte(msg.Topic)))
 	msg.Len = int64(len([]byte(msg.Payload)))
-
+	//ok heao
 	var data []byte
 	buf := bytes.NewBuffer([]byte{})
 	binary.Write(buf, binary.LittleEndian, msg.Id)
@@ -126,28 +126,3 @@ func MsgToBytes(msg Msg) []byte {
 
 	return data
 }
-
-// func Save() {
-// 	ticker := time.NewTicker(60)
-// 	for {
-// 		select {
-// 		case <-ticker.C:
-// 			topics.Range(func(key, value interface{}) bool {
-// 				if value == nil {
-// 					return false
-// 				}
-// 				file, _ := os.Open(key.(string))
-// 				if file == nil {
-// 					file, _ = os.Create(key.(string))
-// 				}
-// 				for msg := value.(*Queue).data.Front(); msg != nil; msg = msg.Next() {
-// 					file.Write(MsgToBytes(msg.Value.(Msg)))
-// 				}
-// 				file.Close()
-// 				return false
-// 			})
-// 		default:
-// 			time.Sleep(1)
-// 		}
-// 	}
-// }
